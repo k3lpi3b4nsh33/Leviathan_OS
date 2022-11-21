@@ -1,0 +1,104 @@
+
+Discarded input sections
+
+ .group         0x0000000000000000        0x8 main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000000200000                . = 0x200000
+                0x0000000000200000                __begin_start_text = .
+
+.start.text     0x0000000000200000       0xcd
+ *(.start.text)
+ .start.text    0x0000000000200000       0xcd entry.o
+                0x0000000000200000                _start
+                0x00000000002000cd                __end_start_text = .
+                0x00000000002000cd                __begin_text = .
+
+.text           0x00000000002000d0       0x23
+ *(.text)
+ .text          0x00000000002000d0        0x0 main.o
+ .text          0x00000000002000d0       0x23 vgastr.o
+                0x00000000002000d0                _strwrite
+                0x00000000002000e8                printf
+                0x00000000002000f3                __end_text = .
+                0x00000000002000f3                __begin_data = .
+
+.iplt           0x00000000002000f3        0x0
+ .iplt          0x00000000002000f3        0x0 entry.o
+
+.text.startup   0x00000000002000f3       0x36
+ .text.startup  0x00000000002000f3       0x36 main.o
+                0x00000000002000f3                main
+
+.text.__x86.get_pc_thunk.bx
+                0x0000000000200129        0x4
+ .text.__x86.get_pc_thunk.bx
+                0x0000000000200129        0x4 main.o
+                0x0000000000200129                __x86.get_pc_thunk.bx
+
+.data           0x0000000000200130        0x0
+ *(.data)
+ .data          0x0000000000200130        0x0 main.o
+ .data          0x0000000000200130        0x0 vgastr.o
+                0x000000000020012d                __end_data = .
+                0x000000000020012d                __begin_rodata = .
+
+.got            0x0000000000200130        0x0
+ .got           0x0000000000200130        0x0 entry.o
+
+.got.plt        0x0000000000200130        0xc
+ .got.plt       0x0000000000200130        0xc entry.o
+                0x0000000000200130                _GLOBAL_OFFSET_TABLE_
+
+.igot.plt       0x000000000020013c        0x0
+ .igot.plt      0x000000000020013c        0x0 entry.o
+
+.rodata         0x000000000020013c       0x44
+ *(.rodata)
+ *(.rodata.*)
+ .rodata.str1.1
+                0x000000000020013c       0x44 main.o
+                0x0000000000200180                __end_rodata = .
+                0x0000000000200180                __begin_kstrtab = .
+
+.eh_frame       0x0000000000200180       0x8c
+ .eh_frame      0x0000000000200180       0x60 main.o
+ .eh_frame      0x00000000002001e0       0x2c vgastr.o
+                                         0x44 (size before relaxing)
+
+.rel.dyn        0x000000000020020c        0x0
+ .rel.got       0x000000000020020c        0x0 entry.o
+ .rel.iplt      0x000000000020020c        0x0 entry.o
+
+.kstrtab
+ *(.kstrtab)
+                0x000000000020020c                __end_kstrtab = .
+                0x000000000020020c                __begin_bss = .
+
+.bss            0x000000000020020c        0x0
+ *(.bss)
+ .bss           0x000000000020020c        0x0 main.o
+ .bss           0x000000000020020c        0x0 vgastr.o
+                0x000000000020020c                __end_bss = .
+LOAD entry.o
+LOAD main.o
+LOAD vgastr.o
+OUTPUT(HelloOS.elf elf32-i386)
+
+.comment        0x0000000000000000       0x2b
+ .comment       0x0000000000000000       0x2b main.o
+                                         0x2c (size before relaxing)
+ .comment       0x000000000000002b       0x2c vgastr.o
+
+.note.GNU-stack
+                0x0000000000000000        0x0
+ .note.GNU-stack
+                0x0000000000000000        0x0 main.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 vgastr.o
